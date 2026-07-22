@@ -128,7 +128,7 @@ export default function ContactForm() {
 
 function inputClass(hasError: boolean) {
   return cn(
-    "w-full rounded-xl border bg-white/5 px-4 py-3 text-sm text-white",
+    "w-full rounded-xl border bg-white/5 px-4 py-3 text-sm ",
     "placeholder:text-slate-600 transition-colors duration-150",
     "focus:outline-none focus:ring-2",
     hasError
@@ -149,7 +149,7 @@ function Field({ id, label, error, children }: FieldProps) {
     <div className="flex flex-col gap-1.5">
       <label
         htmlFor={id}
-        className="text-xs font-semibold uppercase tracking-widest text-slate-500"
+        className="text-xs font-semibold uppercase tracking-widest text-slate-700"
       >
         {label}
       </label>
@@ -178,9 +178,9 @@ function SuccessMessage({ onReset }: SuccessMessageProps) {
         <CheckCircle className="size-7 text-blue-400" aria-hidden="true" />
       </div>
       <div className="space-y-2">
-        <p className="text-base font-semibold text-white">Message sent!</p>
+        <p className="text-base font-semibold text-slate-950">Message sent!</p>
         <p className="text-sm text-slate-500">
-          Thanks for reaching out. I'll get back to you soon.
+          Thanks for reaching out. I&#39;ll get back to you soon.
         </p>
       </div>
       <button

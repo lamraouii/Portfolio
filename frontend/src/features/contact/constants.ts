@@ -11,9 +11,9 @@ export const CONTACT_DESCRIPTION =
 export const CONTACT_FIELDS: ContactField[] = [
   {
     name: "Email",
-    value: "contact@ismaillamraoui.dev",
+    value: "ismail.lamraoui123@gmail.com",
     icon: "Mail",
-    href: "mailto:contact@ismaillamraoui.dev",
+    href: "mailto:ismail.lamraoui123@gmail.com",
   },
   {
     name: "LinkedIn",
@@ -25,7 +25,7 @@ export const CONTACT_FIELDS: ContactField[] = [
     name: "GitHub",
     value: "github.com/lamraoui",
     icon: "Github",
-    href: "https://github.com/lamraoui",
+    href: "https://github.com/lamraouii",
   },
   {
     name: "Location",

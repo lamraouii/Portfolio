@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", figtree.variable)}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen flex flex-col antialiased">
         <Navbar />
         <main className="flex-1 pt-16">{children}</main>
       </body>

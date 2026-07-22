@@ -1,15 +1,16 @@
 "use client";
 
-import { Mail, Linkedin, Github, MapPin, type LucideProps } from "lucide-react";
+import { Mail, MapPin, type LucideProps } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { CONTACT_DESCRIPTION, CONTACT_FIELDS, CONTACT_ANIMATION } from "../constants";
 
 const ICON_MAP: Record<string, React.ElementType<LucideProps>> = {
-  Mail,
-  Linkedin,
-  Github,
-  MapPin,
+    Mail,
+    Github: FaGithub,
+    Linkedin: FaLinkedin,
+    MapPin,
 };
 
 export default function ContactInfo() {
