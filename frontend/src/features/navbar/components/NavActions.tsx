@@ -1,16 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { Github01Icon, LinkedinIcon, FileDownloadIcon } from "@hugeicons/core-free-icons";
+import { LuGithub, LuLinkedin, LuDownload } from "react-icons/lu";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/common/button";
 import type { SocialLink } from "../types";
 import { RESUME_URL } from "../constants";
 
 const ICON_MAP: Record<string, React.ComponentType> = {
-  GitHub: () => <HugeiconsIcon icon={Github01Icon} size={16} />,
-  LinkedIn: () => <HugeiconsIcon icon={LinkedinIcon} size={16} />,
+  GitHub: () => <LuGithub size={16} />,
+  LinkedIn: () => <LuLinkedin size={16} />,
 };
 
 interface NavActionsProps {
@@ -54,7 +53,7 @@ export function NavActions({ socialLinks, className }: NavActionsProps) {
         aria-label="Download resume"
       >
         <Button variant="outline" size="sm" className="gap-1.5 ml-1">
-          <HugeiconsIcon icon={FileDownloadIcon} size={14} aria-hidden="true" />
+          <LuDownload size={14} aria-hidden="true" />
           Resume
         </Button>
       </a>

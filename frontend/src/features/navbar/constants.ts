@@ -10,8 +10,8 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { label: "GitHub", href: "https://github.com/ismaillamraoui" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/ismaillamraoui" },
+  { label: "GitHub", href: "https://github.com/lamraoui" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/ismail-lamraoui" },
 ];
 
 export const RESUME_URL = "/resume.pdf";

@@ -60,7 +60,7 @@ export function Heading({
   as: Component = "h2",
   ...props
 }: HeadingProps) {
-  const resolvedSize = size || (Component as any)
+  const resolvedSize = size ?? "lg";
 
   return (
     <Component
