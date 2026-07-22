@@ -17,11 +17,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       <GlassCard
         hoverEffect="lift-glow"
         backdropBlur="sm"
-        className="group flex h-full flex-col gap-5 p-6"
+        className="group flex h-full flex-col gap-6 p-7"
       >
         {/* Header */}
         <div className="flex items-start justify-between gap-4">
-          <h3 className="text-sm font-semibold leading-snug text-white">
+          <h3 className="text-base font-semibold leading-snug text-white">
             {project.name}
           </h3>
 
@@ -39,13 +39,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Description */}
-        <p className="flex-1 text-xs leading-relaxed text-slate-500">
+        <p className="flex-1 text-sm leading-relaxed text-slate-500">
           {project.description}
         </p>
 
         {/* Tech badges */}
         <div
-          className="flex flex-wrap gap-1.5"
+          className="flex flex-wrap gap-2"
           aria-label={`Technologies used in ${project.name}`}
         >
           {project.technologies.map((tech) => (

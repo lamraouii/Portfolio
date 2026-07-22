@@ -35,20 +35,20 @@ export default function SkillCategory({ category }: SkillCategoryProps) {
       <GlassCard
         hoverEffect="lift"
         backdropBlur="sm"
-        className="flex h-full flex-col gap-5 p-6"
+        className="flex h-full flex-col gap-6 p-7"
       >
         {/* Icon + title */}
         <div className="flex items-center gap-3">
           <div
             className={cn(
-              "inline-flex size-9 shrink-0 items-center justify-center rounded-xl",
-              "bg-white/5 text-slate-300 ring-1 ring-white/10"
+              "inline-flex size-10 shrink-0 items-center justify-center rounded-xl",
+              "bg-blue-500/10 text-blue-400 ring-1 ring-blue-500/20"
             )}
             aria-hidden="true"
           >
-            <Icon className="size-4" />
+            <Icon className="size-5" />
           </div>
-          <h3 className="text-sm font-semibold text-white">{category.title}</h3>
+          <h3 className="text-base font-semibold text-white">{category.title}</h3>
         </div>
 
         {/* Skill badges */}

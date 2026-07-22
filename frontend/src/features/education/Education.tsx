@@ -21,14 +21,14 @@ export default function Education() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="flex flex-col gap-12"
+          className="flex flex-col gap-14"
         >
           {/* Section heading */}
           <motion.div
             variants={EDUCATION_ANIMATION.item}
-            className="flex flex-col gap-3"
+            className="flex flex-col gap-4"
           >
-            <span className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+            <span className="text-xs font-semibold uppercase tracking-widest text-blue-500">
               {EDUCATION_LABEL}
             </span>
             <Heading as="h2" size="h2" className="text-white">
@@ -37,7 +37,7 @@ export default function Education() {
           </motion.div>
 
           {/* Two-card grid */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <EducationCard />
             <CertificationCard />
           </div>
