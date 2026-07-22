@@ -4,6 +4,7 @@ import Projects from "@/features/projects";
 import Skills from "@/features/skills";
 import Experience from "@/features/experience";
 import Education from "@/features/education";
+import Contact from "@/features/contact";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Education />
       <Projects />
       <Skills />
+      <Contact />
     </>
   );
 }
