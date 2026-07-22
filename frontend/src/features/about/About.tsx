@@ -22,20 +22,16 @@ export default function About() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid gap-16 lg:grid-cols-2 lg:gap-24"
+          className="grid gap-20 lg:grid-cols-2 lg:gap-28"
         >
           {/* Left — text + stats */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-10">
             {/* Label + heading */}
-            <motion.div variants={ABOUT_ANIMATION.item} className="space-y-3">
-              <span className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+            <motion.div variants={ABOUT_ANIMATION.item} className="space-y-4">
+              <span className="text-xs font-semibold uppercase tracking-widest text-blue-500">
                 Who I am
               </span>
-              <Heading
-                as="h2"
-                size="h2"
-                className="text-white"
-              >
+              <Heading as="h2" size="h2" className="text-white">
                 {ABOUT_TITLE}
               </Heading>
             </motion.div>
@@ -43,12 +39,12 @@ export default function About() {
             {/* Description paragraphs */}
             <motion.div
               variants={ABOUT_ANIMATION.item}
-              className="space-y-4"
+              className="space-y-5"
             >
               {ABOUT_PARAGRAPHS.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className="text-base leading-relaxed text-slate-400"
+                  className="text-lg leading-relaxed text-slate-400"
                 >
                   {paragraph}
                 </p>
@@ -62,7 +58,7 @@ export default function About() {
           {/* Right — cards */}
           <motion.div
             variants={ABOUT_ANIMATION.container}
-            className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-1 lg:gap-4"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-1 lg:gap-5"
           >
             {ABOUT_CARDS.map((card) => (
               <AboutCard key={card.title} card={card} />

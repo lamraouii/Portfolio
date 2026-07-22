@@ -25,20 +25,21 @@ export default function AboutCard({ card }: AboutCardProps) {
       <GlassCard
         hoverEffect="lift"
         backdropBlur="sm"
-        className="flex flex-col gap-4 p-6 h-full"
+        className="flex flex-col gap-5 p-7 h-full"
       >
         <div
           className={cn(
-            "inline-flex size-10 items-center justify-center rounded-xl",
-            "bg-white/5 text-slate-300 ring-1 ring-white/10"
+            "inline-flex size-11 items-center justify-center rounded-xl",
+            "bg-blue-500/10 text-blue-400 ring-1 ring-blue-500/20"
           )}
+          aria-hidden="true"
         >
           <Icon className="size-5" />
         </div>
 
-        <div className="space-y-1">
-          <h3 className="text-sm font-semibold text-white">{card.title}</h3>
-          <p className="text-xs leading-relaxed text-slate-500">
+        <div className="space-y-2">
+          <h3 className="text-base font-semibold text-white">{card.title}</h3>
+          <p className="text-sm leading-relaxed text-slate-500">
             {card.description}
           </p>
         </div>

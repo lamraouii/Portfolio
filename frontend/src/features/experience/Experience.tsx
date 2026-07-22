@@ -21,14 +21,14 @@ export default function Experience() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="flex flex-col gap-12"
+          className="flex flex-col gap-14"
         >
           {/* Section heading */}
           <motion.div
             variants={EXPERIENCE_ANIMATION.item}
-            className="flex flex-col gap-3"
+            className="flex flex-col gap-4"
           >
-            <span className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+            <span className="text-xs font-semibold uppercase tracking-widest text-blue-500">
               {EXPERIENCE_LABEL}
             </span>
             <Heading as="h2" size="h2" className="text-white">
