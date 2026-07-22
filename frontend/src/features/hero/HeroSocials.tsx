@@ -1,12 +1,12 @@
 "use client";
 
-import { Github, Linkedin } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import { HERO_SOCIALS } from "./constants";
 
 const SOCIAL_ICONS: Record<string, React.ElementType> = {
-  GitHub: Github,
-  LinkedIn: Linkedin,
+  GitHub: FaGithub,
+  LinkedIn: FaLinkedin,
 };
 
 export default function HeroSocials() {

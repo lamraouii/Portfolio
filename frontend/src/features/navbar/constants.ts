@@ -10,7 +10,7 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { label: "GitHub", href: "https://github.com/lamraoui" },
+  { label: "GitHub", href: "https://github.com/lamraouii" },
   { label: "LinkedIn", href: "https://linkedin.com/in/ismail-lamraoui" },
 ];
 
