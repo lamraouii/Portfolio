@@ -3,7 +3,7 @@ import type { NavLink, SocialLink } from "./types";
 export const NAV_LINKS: NavLink[] = [
   { label: "Home", sectionId: "hero" },
   { label: "About", sectionId: "about" },
-  { label: "Experience", sectionId: "experience" },
+  { label: "Journey", sectionId: "experience" },
   { label: "Projects", sectionId: "projects" },
   { label: "Skills", sectionId: "skills" },
   { label: "Testimonials", sectionId: "testimonials" },

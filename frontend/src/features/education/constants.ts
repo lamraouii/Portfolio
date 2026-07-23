@@ -1,25 +1,42 @@
-import type { EducationEntry, CertificationEntry } from "./types";
+import type { EducationEntry, CertificationEntry, VolunteeringEntry } from "./types";
 
-export const EDUCATION_TITLE = "Education & Certifications";
+export const EDUCATION_TITLE = "Certifications & Volunteering";
 
-export const EDUCATION_LABEL = "Academic background";
+export const EDUCATION_LABEL = "Impact & Recognition";
 
-export const EDUCATION_ENTRIES: EducationEntry[] = [
-  {
-    degree: "Bachelor's in Computer Engineering",
-    institution: "University",
-    period: "2021 — Present",
-    description:
-      "Core curriculum covering algorithms, data structures, software architecture, operating systems, databases, networking, and artificial intelligence.",
-  },
-];
+export const EDUCATION_ENTRIES: EducationEntry[] = [];
 
 export const CERTIFICATION_ENTRIES: CertificationEntry[] = [
   {
     title: "Oracle Certified Professional: Java SE 17 Developer",
     issuer: "Oracle",
     year: "2024",
-    credential: "Java SE 17",
+    credentialUrl: "https://badgr.com/public/assertions/placeholder",
+    imageUrl: "https://picsum.photos/seed/oracle-cert/600/400",
+  },
+];
+
+export const VOLUNTEERING_ENTRIES: VolunteeringEntry[] = [
+  {
+    id: "v1",
+    role: "Lead Technical Volunteer",
+    event: "Hackathon 2024",
+    institution: "Tech University",
+    description: "Mentored 20+ teams in building scalable cloud solutions and judged technical implementations.",
+    images: [
+      "https://picsum.photos/seed/hack1/800/600",
+      "https://picsum.photos/seed/hack2/800/600",
+    ],
+  },
+  {
+    id: "v2",
+    role: "Community Organizer",
+    event: "GDG DevFest",
+    institution: "Google Developer Groups",
+    description: "Organized technical workshops and coordinated speaker logistics for 500+ attendees.",
+    images: [
+      "https://picsum.photos/seed/devfest1/800/600",
+    ],
   },
 ];
 

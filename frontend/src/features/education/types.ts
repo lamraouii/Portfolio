@@ -9,5 +9,15 @@ export interface CertificationEntry {
   title: string;
   issuer: string;
   year: string;
-  credential?: string;
+  credentialUrl?: string;
+  imageUrl?: string;
+}
+
+export interface VolunteeringEntry {
+  id: string;
+  role: string;
+  event: string;
+  institution: string;
+  description: string;
+  images: string[];
 }

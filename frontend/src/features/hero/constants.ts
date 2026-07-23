@@ -1,3 +1,5 @@
+import {FaGithub, FaLinkedin} from "react-icons/fa";
+
 export const HERO_NAME = "Ismail Lamraoui";
 
 export const HERO_ROLE = "Backend Developer | AI Engineer";
@@ -10,6 +12,12 @@ export const HERO_BUTTONS = [
   { label: "Download CV", href: "/resume.pdf", variant: "outline" as const },
 ] as const;
 
+export const SOCIAL_ICONS = {
+  GitHub: FaGithub,
+  LinkedIn: FaLinkedin,
+};
+
+export type FooterSocialLabel = keyof typeof SOCIAL_ICONS;
 export const HERO_SOCIALS = [
   { label: "GitHub", href: "https://github.com/lamraoui" },
   { label: "LinkedIn", href: "https://linkedin.com/in/ismail-lamraoui" },
