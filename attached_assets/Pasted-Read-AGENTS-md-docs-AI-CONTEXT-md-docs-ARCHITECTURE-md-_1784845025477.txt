@@ -1,0 +1,206 @@
+Read:
+- AGENTS.md
+- docs/AI_CONTEXT.md
+- docs/ARCHITECTURE.md
+- docs/CODING_STANDARDS.md
+
+Refactor ONLY the Education section.
+
+Do NOT modify any other section.
+
+====================================================
+GOAL
+====================================================
+
+The current implementation does not match the intended design.
+
+I want to split this part into THREE independent subsections:
+
+1. Academic Journey
+2. Certifications
+3. Volunteering
+
+Keep the existing design language of the portfolio.
+
+====================================================
+1. ACADEMIC JOURNEY
+====================================================
+
+This is NOT a simple timeline.
+
+It must be a two-column vertical timeline.
+
+The vertical timeline line stays exactly in the CENTER of the page.
+
+The line represents time.
+
+LEFT SIDE:
+Only academic education.
+
+Examples:
+
+- Baccalaureate
+- Preparatory Cycle
+- Engineering Cycle
+- (later Master)
+- (later PhD)
+
+RIGHT SIDE:
+Professional experiences related to studies.
+
+Examples:
+
+- CHU Internship
+- End-of-Year Internship
+- PFA Project
+- Current Internship
+- (later future internships)
+- (later professional experience)
+
+The two sides must share the SAME timeline.
+
+Example:
+
+                     │
+Education            │            Internship
+─────────────────────│────────────────────────
+
+Engineering Cycle    │      Current Internship
+
+Preparatory Cycle    │      PFA Project
+
+Baccalaureate        │      CHU Internship
+
+                     │
+
+The vertical line must always stay centered.
+
+Cards should alternate left and right according to their category.
+
+Use Framer Motion animations already used in the project.
+
+Make it fully responsive.
+
+On mobile:
+
+Timeline becomes a single vertical timeline while preserving chronological order.
+
+====================================================
+DATA STRUCTURE
+====================================================
+
+Separate data into two arrays.
+
+education[]
+
+internships[]
+
+Do NOT hardcode JSX.
+
+I want to easily add future education or internships by modifying only constants.
+
+====================================================
+2. CERTIFICATIONS
+====================================================
+
+Leave Certifications as they currently are.
+
+No major design changes.
+
+Each certification remains an individual card.
+
+====================================================
+3. VOLUNTEERING
+====================================================
+
+This becomes a completely independent subsection AFTER Certifications.
+
+It should NOT use a timeline.
+
+Instead, reuse the visual style of the Projects cards.
+
+Each volunteering card contains:
+
+- image carousel (same style as projects)
+- event title
+- organization
+- short description
+- date
+- optional technologies or skills gained
+- optional button for gallery/details
+
+Examples:
+
+- MIATHON 2025
+- Cultural Club President
+- Tutoring First-Year Students
+
+The image carousel should be reusable.
+
+Do NOT duplicate the Projects carousel component.
+
+====================================================
+ARCHITECTURE
+====================================================
+
+Create reusable components.
+
+Separate:
+
+components/
+
+AcademicTimeline.tsx
+
+TimelineItem.tsx
+
+InternshipCard.tsx
+
+EducationCard.tsx
+
+VolunteeringCard.tsx
+
+Use constants.ts for all data.
+
+No duplicated code.
+
+====================================================
+FUTURE REQUIREMENT
+====================================================
+
+The backend will later provide:
+
+- education
+- internships
+- volunteering
+- certifications
+
+Therefore:
+
+Keep components independent.
+
+Do NOT tightly couple education and internships.
+
+Design the data models so replacing constants with API responses requires minimal changes.
+
+====================================================
+DO NOT
+====================================================
+
+- Do not modify Navbar.
+- Do not modify Hero.
+- Do not modify Projects.
+- Do not modify Contact.
+- Do not change colors.
+- Do not install new libraries.
+- Do not change existing architecture.
+
+====================================================
+DELIVERABLE
+====================================================
+
+Return:
+
+- Files created
+- Files modified
+- Explanation of the architecture
+- Test instructions
