@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/features/navbar";
 import { Footer } from "@/features/footer";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
 
@@ -33,9 +34,16 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", "dark", geistSans.variable, geistMono.variable, "font-sans", figtree.variable)}
     >
       <body className="min-h-screen flex flex-col antialiased">
+      <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+      >
         <Navbar />
         <main className="flex-1 pt-16">{children}</main>
         <Footer />
+      </ThemeProvider>
       </body>
     </html>
   );
