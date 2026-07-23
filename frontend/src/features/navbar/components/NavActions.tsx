@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { LuGithub, LuLinkedin, LuDownload } from "react-icons/lu";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/common/button";
+import { ThemeToggle } from "./ThemeToggle";
 import type { SocialLink } from "../types";
 import { RESUME_URL } from "../constants";
 
@@ -25,6 +26,8 @@ export function NavActions({ socialLinks, className }: NavActionsProps) {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.3, delay: 0.15 }}
     >
+      <ThemeToggle />
+
       {socialLinks.map((link) => {
         const Icon = ICON_MAP[link.label];
         return (
