@@ -1,11 +1,5 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { cn } from "@/lib/utils";
-import type { FooterSocialLink } from "../types";
-
-const SOCIAL_ICONS: Record<string, React.ElementType> = {
-  GitHub: FaGithub,
-  LinkedIn: FaLinkedin,
-};
+import {FooterSocialLink, SOCIAL_ICONS} from "../types";
 
 interface FooterSocialsProps {
   links: FooterSocialLink[];

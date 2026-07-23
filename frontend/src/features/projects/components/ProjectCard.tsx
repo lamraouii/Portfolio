@@ -6,11 +6,11 @@ import { GlassCard } from "@/components/common/card";
 import TechBadge from "./TechBadge";
 import type { Project } from "../types";
 import { PROJECTS_ANIMATION } from "../constants";
+import ProjectImageCarousel from "@/features/projects/components/ProjectImageCarousel";
 
 interface ProjectCardProps {
   project: Project;
 }
-
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <motion.div variants={PROJECTS_ANIMATION.item} className="h-full">
@@ -19,6 +19,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         backdropBlur="sm"
         className="group flex h-full flex-col gap-6 p-7"
       >
+          <div>
+              <ProjectImageCarousel images={project.images} />
+          </div>
         {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <h3 className="text-base font-semibold leading-snug text-white">
