@@ -1,8 +1,7 @@
-import type { EducationEntry, CertificationEntry, VolunteeringEntry } from "./types";
+import type { CertificationEntry, EducationEntry } from "./types";
 
-export const EDUCATION_TITLE = "Certifications & Volunteering";
-
-export const EDUCATION_LABEL = "Impact & Recognition";
+export const EDUCATION_TITLE = "Professional Certifications";
+export const EDUCATION_LABEL = "Recognition & Excellence";
 
 export const EDUCATION_ENTRIES: EducationEntry[] = [];
 
@@ -14,29 +13,19 @@ export const CERTIFICATION_ENTRIES: CertificationEntry[] = [
     credentialUrl: "https://badgr.com/public/assertions/placeholder",
     imageUrl: "https://picsum.photos/seed/oracle-cert/600/400",
   },
-];
-
-export const VOLUNTEERING_ENTRIES: VolunteeringEntry[] = [
   {
-    id: "v1",
-    role: "Lead Technical Volunteer",
-    event: "Hackathon 2024",
-    institution: "Tech University",
-    description: "Mentored 20+ teams in building scalable cloud solutions and judged technical implementations.",
-    images: [
-      "https://picsum.photos/seed/hack1/800/600",
-      "https://picsum.photos/seed/hack2/800/600",
-    ],
+    title: "Spring Certified Professional",
+    issuer: "Broadcom/VMware",
+    year: "2023",
+    credentialUrl: "https://badgr.com/public/assertions/placeholder",
+    imageUrl: "https://picsum.photos/seed/spring-cert/600/400",
   },
   {
-    id: "v2",
-    role: "Community Organizer",
-    event: "GDG DevFest",
-    institution: "Google Developer Groups",
-    description: "Organized technical workshops and coordinated speaker logistics for 500+ attendees.",
-    images: [
-      "https://picsum.photos/seed/devfest1/800/600",
-    ],
+    title: "Google Cloud Associate Engineer",
+    issuer: "Google Cloud",
+    year: "2023",
+    credentialUrl: "https://badgr.com/public/assertions/placeholder",
+    imageUrl: "https://picsum.photos/seed/gcp-cert/600/400",
   },
 ];
 

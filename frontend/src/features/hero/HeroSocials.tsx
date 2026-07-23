@@ -1,6 +1,5 @@
 "use client";
 
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import { HERO_SOCIALS, SOCIAL_ICONS } from "./constants";
 

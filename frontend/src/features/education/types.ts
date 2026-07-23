@@ -19,5 +19,8 @@ export interface VolunteeringEntry {
   event: string;
   institution: string;
   description: string;
+  date: string;
   images: string[];
+  tags?: string[];
+  detailsUrl?: string;
 }

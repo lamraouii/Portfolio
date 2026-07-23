@@ -6,6 +6,7 @@ import Education from "@/features/education";
 import Contact from "@/features/contact";
 import Comments from "@/features/comments";
 import {Journey} from "@/features/journey";
+import Volunteering from "@/features/volunteering/Volunteering";
 
 export default function Home() {
   return (
@@ -13,9 +14,10 @@ export default function Home() {
       <Hero />
       <About />
       <Journey />
-      <Education />
+        <Education />
       <Projects />
       <Skills />
+        <Volunteering />
         <Comments />
       <Contact />
     </>

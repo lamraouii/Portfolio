@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Section, Container } from "@/components/layout";
 import { Heading } from "@/components/common/heading";
 import CertificationCard from "./components/CertificationCard";
-import VolunteeringSection from "./components/VolunteeringSection";
 import {
   EDUCATION_TITLE,
   EDUCATION_LABEL,
@@ -13,7 +12,7 @@ import {
 
 export default function Education() {
   return (
-    <Section id="education" aria-label="Certifications and Volunteering">
+    <Section id="certifications" aria-label="Professional Certifications">
       <Container>
         <motion.div
           variants={EDUCATION_ANIMATION.container}
@@ -35,13 +34,10 @@ export default function Education() {
             </Heading>
           </motion.div>
 
-          {/* Centered Certification Card (taking full width or sharing) */}
+          {/* Centered Certification Card */}
           <div className="mx-auto w-full max-w-4xl">
             <CertificationCard />
           </div>
-
-          {/* Volunteering Section */}
-          <VolunteeringSection />
         </motion.div>
       </Container>
     </Section>

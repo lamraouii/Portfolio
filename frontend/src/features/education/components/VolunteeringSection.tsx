@@ -7,7 +7,8 @@ import { GlassCard } from '@/components/common/card';
 import { Heart } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import { VOLUNTEERING_ENTRIES, EDUCATION_ANIMATION } from '../constants';
+import { EDUCATION_ANIMATION } from '../constants';
+import { VOLUNTEERING_ENTRIES } from '@/features/volunteering/constants';
 import {VolunteeringEntry} from "@/features/education/types";
 
 function VolunteeringCard({ entry }: { entry: VolunteeringEntry }) {
