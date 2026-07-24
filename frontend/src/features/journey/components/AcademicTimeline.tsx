@@ -50,7 +50,7 @@ export default function AcademicTimeline() {
       {/* ═══════════════════════════════════════════════════════
           DESKTOP — true two-column, center line (md+)
       ═══════════════════════════════════════════════════════ */}
-      <div className="relative hidden md:block">
+      <div className="relative block">
         {/*
           Center vertical line.
           grid-cols-[1fr_48px_1fr] ⟹ center of the 48px column = 50% of container.
@@ -69,7 +69,8 @@ export default function AcademicTimeline() {
           className="flex flex-col gap-12"
         >
           {/* Column headers */}
-          <div className="grid grid-cols-[1fr_48px_1fr] items-center">
+          <div className="grid items-center"
+               style={{ gridTemplateColumns: "1fr 48px 1fr" }}>
             <div className="flex items-center justify-end gap-2 pr-6">
               <span className="text-sm font-semibold text-blue-400">Education</span>
               <GraduationCap className="size-4 text-blue-400" aria-hidden="true" />
@@ -91,10 +92,11 @@ export default function AcademicTimeline() {
               <motion.div
                 key={rowIndex}
                 variants={JOURNEY_ANIMATION.item}
-                className="grid grid-cols-[1fr_48px_1fr] items-start"
+                className="grid  items-start"
+                style={{ gridTemplateColumns: "1fr 48px 1fr" }}
               >
                 {/* LEFT — education card */}
-                <div className="flex justify-end pr-6">
+                <div className="flex min-w-0 justify-end pr-6">
                   {row.education ? (
                     <TimelineCard
                       entry={row.education}
@@ -134,7 +136,7 @@ export default function AcademicTimeline() {
                 </div>
 
                 {/* RIGHT — internship card */}
-                <div className="pl-6">
+                <div className="min-w-0 pl-6">
                   {row.internship ? (
                     <TimelineCard
                       entry={row.internship}
