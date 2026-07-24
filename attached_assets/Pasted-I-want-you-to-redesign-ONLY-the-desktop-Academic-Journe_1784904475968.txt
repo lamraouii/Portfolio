@@ -1,0 +1,137 @@
+I want you to redesign ONLY the desktop Academic Journey timeline section.
+
+Before making any changes:
+
+1. Read all the project documentation (.md files) to understand the architecture, coding style, component organization, design system and conventions.
+2. Follow the existing project patterns.
+3. Do NOT modify unrelated files.
+4. Do NOT redesign the rest of the portfolio.
+
+==========================
+GOAL
+==========================
+
+I want a premium, modern timeline similar to high-end portfolio websites.
+
+The section should represent my Academic Journey.
+
+It contains TWO categories:
+
+- Education
+- Professional Experience (Internships, PFA, current internship, future PhD, etc.)
+
+The desktop layout should have a SINGLE vertical timeline in the center.
+
+Education entries must ALWAYS appear on the LEFT.
+
+Professional entries must ALWAYS appear on the RIGHT.
+
+Each event has ONE centered timeline dot.
+
+Example:
+
+                    │
+┌────────────────┐  │
+│ Engineering    │──●
+└────────────────┘  │
+                    │
+                    ●──┌────────────────┐
+                       │ Current Stage  │
+                       └────────────────┘
+                    │
+┌────────────────┐  │
+│ Preparatory    │──●
+└────────────────┘  │
+                    │
+                    ●──┌────────────────┐
+                       │ PFA Project    │
+                       └────────────────┘
+                    │
+┌────────────────┐  │
+│ Baccalaureate  │──●
+└────────────────┘  │
+                    │
+                    ●──┌────────────────┐
+                       │ CHU Internship │
+                       └────────────────┘
+
+==========================
+VERY IMPORTANT
+==========================
+
+The current implementation has several problems.
+
+DO NOT try to patch it.
+
+Instead, rebuild the desktop timeline architecture cleanly while keeping the same project structure.
+
+Current issues:
+
+- Cards stretch across the whole row.
+- Cards occupy the full width of their grid columns.
+- Cards are too far from the center line.
+- Layout feels like rows instead of a true timeline.
+- Timeline alignment is inconsistent.
+- The desktop implementation became difficult to maintain.
+
+==========================
+WHAT I EXPECT
+==========================
+
+Desktop:
+
+- One continuous vertical center line.
+- One event per row.
+- One centered timeline dot.
+- Left cards always Education.
+- Right cards always Professional.
+- Cards should NEVER stretch.
+- Cards should have a maximum width (around 360–420px).
+- Cards should stay close to the center line.
+- Empty space should remain on the outside.
+- Equal spacing on both sides.
+- Beautiful animations preserved.
+- Fully responsive.
+
+Mobile:
+
+Keep the current mobile implementation if it already works correctly.
+
+==========================
+ARCHITECTURE
+==========================
+
+Do NOT mix unrelated logic.
+
+If needed:
+
+- create small reusable components
+- keep TimelineCard reusable
+- keep data separated from rendering
+- avoid duplicated code
+- use proper TypeScript typing
+- follow SOLID and clean architecture principles
+- keep files organized exactly like the current project
+
+==========================
+IMPORTANT
+==========================
+
+This is a redesign of ONLY the Academic Journey feature.
+
+Do NOT modify:
+- Hero
+- Navbar
+- Projects
+- Footer
+- Contact
+- Certificates
+- Volunteering
+- Backend
+- APIs
+- Theme
+- Other sections
+
+Only touch the files required for this feature.
+
+When finished, explain which files were modified and why.
