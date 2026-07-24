@@ -13,23 +13,33 @@ interface VolunteeringCardProps {
 }
 
 export default function VolunteeringCard({ entry }: VolunteeringCardProps) {
+  const hasImages = entry.images && entry.images.length > 0;
+
   return (
     <motion.div variants={VOLUNTEERING_ANIMATION.item} className="h-full">
-      <GlassCard className="flex flex-col overflow-hidden border-white/5 bg-white/[0.02] transition-all hover:border-primary/30 hover:bg-white/[0.05]">
-        {/* Image Carousel */}
-        {entry.images && entry.images.length > 0 && (
-          <div className="relative w-full">
+      {/*
+        h-full on GlassCard is required so the flex column can stretch
+        to fill the grid cell, enabling mt-auto on the footer to work.
+      */}
+      <GlassCard
+        className="h-full flex flex-col overflow-hidden border-white/5 bg-white/[0.02]
+                   transition-all hover:border-primary/30 hover:bg-white/[0.05]"
+      >
+        {/* Image carousel */}
+        {hasImages && (
+          <div className="relative w-full shrink-0">
             <ProjectImageCarousel images={entry.images} />
           </div>
         )}
 
-        {/* Content */}
+        {/* Card body — flex column that fills remaining height */}
         <div className="flex flex-1 flex-col p-8">
+
           {/* Header */}
           <div className="mb-4">
-            <div className="text-[10px] font-bold uppercase tracking-widest text-primary/80">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-primary/80">
               {entry.institution}
-            </div>
+            </p>
             <h3 className="mt-1 text-xl font-bold leading-tight text-foreground">
               {entry.event}
             </h3>
@@ -38,7 +48,7 @@ export default function VolunteeringCard({ entry }: VolunteeringCardProps) {
             </p>
           </div>
 
-          {/* Description */}
+          {/* Description — flex-1 pushes everything below toward the bottom */}
           <p className="flex-1 text-sm leading-relaxed text-muted-foreground/80">
             {entry.description}
           </p>
@@ -49,7 +59,8 @@ export default function VolunteeringCard({ entry }: VolunteeringCardProps) {
               {entry.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-md border border-white/5 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-slate-400"
+                  className="rounded-md border border-white/5 bg-white/5 px-2 py-0.5
+                             text-[10px] font-medium text-slate-400"
                 >
                   {tag}
                 </span>
@@ -57,30 +68,40 @@ export default function VolunteeringCard({ entry }: VolunteeringCardProps) {
             </div>
           )}
 
-          {/* Footer — date + View Gallery */}
-          <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4">
-            {/* Date — fixed: was text-muted-foreground/60 (too faint) */}
+          {/*
+            Footer — mt-auto guarantees it always sits at the very bottom
+            of the card regardless of content height above it.
+          */}
+          <div
+            className="mt-auto flex items-center justify-between
+                       border-t border-white/5 pt-4 mt-6"
+          >
+            {/* Date */}
             <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
               <Calendar className="size-3.5 shrink-0" aria-hidden="true" />
               <span>{entry.date}</span>
             </div>
 
-            {/* View Gallery — fixed: was gated on entry.detailsUrl which was never set;
-                now shows for any entry that has images */}
-            {entry.images && entry.images.length > 0 && (
+            {/* View Gallery — visible whenever the entry has images */}
+            {hasImages && (
               <button
+                type="button"
+                aria-label={`View gallery for ${entry.event}`}
                 onClick={() => {
                   if (entry.detailsUrl) {
                     window.open(entry.detailsUrl, "_blank", "noopener,noreferrer");
                   }
                 }}
-                aria-label={`View gallery for ${entry.event}`}
-                className="text-[10px] font-bold uppercase tracking-widest text-primary transition-colors hover:text-primary/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+                className="text-[10px] font-bold uppercase tracking-widest
+                           text-primary transition-colors hover:text-primary/70
+                           focus-visible:outline-none focus-visible:ring-2
+                           focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
               >
                 View Gallery
               </button>
             )}
           </div>
+
         </div>
       </GlassCard>
     </motion.div>
