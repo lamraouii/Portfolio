@@ -16,6 +16,7 @@ export default function Home() {
       <Journey />
       <Projects />
       <Skills />
+        <Education/>
         <Volunteering />
         <Comments />
       <Contact />
