@@ -1,13 +1,7 @@
 "use client";
 
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { cn } from "@/lib/utils";
-import { HERO_SOCIALS } from "./constants";
-
-const SOCIAL_ICONS: Record<string, React.ElementType> = {
-  GitHub: FaGithub,
-  LinkedIn: FaLinkedin,
-};
+import { HERO_SOCIALS, SOCIAL_ICONS } from "./constants";
 
 export default function HeroSocials() {
   return (

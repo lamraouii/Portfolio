@@ -1,25 +1,31 @@
-import type { EducationEntry, CertificationEntry } from "./types";
+import type { CertificationEntry, EducationEntry } from "./types";
 
-export const EDUCATION_TITLE = "Education & Certifications";
+export const EDUCATION_TITLE = "Professional Certifications";
+export const EDUCATION_LABEL = "Recognition & Excellence";
 
-export const EDUCATION_LABEL = "Academic background";
-
-export const EDUCATION_ENTRIES: EducationEntry[] = [
-  {
-    degree: "Bachelor's in Computer Engineering",
-    institution: "University",
-    period: "2021 — Present",
-    description:
-      "Core curriculum covering algorithms, data structures, software architecture, operating systems, databases, networking, and artificial intelligence.",
-  },
-];
+export const EDUCATION_ENTRIES: EducationEntry[] = [];
 
 export const CERTIFICATION_ENTRIES: CertificationEntry[] = [
   {
     title: "Oracle Certified Professional: Java SE 17 Developer",
     issuer: "Oracle",
     year: "2024",
-    credential: "Java SE 17",
+    credentialUrl: "https://badgr.com/public/assertions/placeholder",
+    imageUrl: "https://picsum.photos/seed/oracle-cert/600/400",
+  },
+  {
+    title: "Spring Certified Professional",
+    issuer: "Broadcom/VMware",
+    year: "2023",
+    credentialUrl: "https://badgr.com/public/assertions/placeholder",
+    imageUrl: "https://picsum.photos/seed/spring-cert/600/400",
+  },
+  {
+    title: "Google Cloud Associate Engineer",
+    issuer: "Google Cloud",
+    year: "2023",
+    credentialUrl: "https://badgr.com/public/assertions/placeholder",
+    imageUrl: "https://picsum.photos/seed/gcp-cert/600/400",
   },
 ];
 

@@ -1,10 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Section } from "@/components/layout";
-import Container from "@/components/layout/Container";
+import { Section, Container } from "@/components/layout";
 import { Heading } from "@/components/common/heading";
-import EducationCard from "./components/EducationCard";
 import CertificationCard from "./components/CertificationCard";
 import {
   EDUCATION_TITLE,
@@ -14,7 +12,7 @@ import {
 
 export default function Education() {
   return (
-    <Section id="education" aria-label="Education and Certifications">
+    <Section id="certifications" aria-label="Professional Certifications">
       <Container>
         <motion.div
           variants={EDUCATION_ANIMATION.container}
@@ -26,9 +24,9 @@ export default function Education() {
           {/* Section heading */}
           <motion.div
             variants={EDUCATION_ANIMATION.item}
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-4 text-center"
           >
-            <span className="text-xs font-semibold uppercase tracking-widest text-blue-500">
+            <span className="text-xs font-semibold uppercase tracking-widest text-primary">
               {EDUCATION_LABEL}
             </span>
             <Heading as="h2" size="h2" className="text-white">
@@ -36,9 +34,8 @@ export default function Education() {
             </Heading>
           </motion.div>
 
-          {/* Two-card grid */}
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <EducationCard />
+          {/* Centered Certification Card */}
+          <div className="mx-auto w-full max-w-4xl">
             <CertificationCard />
           </div>
         </motion.div>
