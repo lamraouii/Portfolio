@@ -12,53 +12,59 @@ import {
 } from "../constants";
 import type { TimelineEntry } from "../types";
 
-interface TimelineRow {
-  education?: TimelineEntry;
-  internship?: TimelineEntry;
+// ─── flat list: every entry is independent on its own side ────────────────
+interface FlatItem {
+  entry: TimelineEntry;
+  kind: "education" | "internship";
+  side: "left" | "right";
 }
 
-function buildRows(): TimelineRow[] {
+function buildFlatItems(): FlatItem[] {
+  const items: FlatItem[] = [];
   const max = Math.max(EDUCATION_ENTRIES.length, INTERNSHIP_ENTRIES.length);
-  return Array.from({ length: max }, (_, i) => ({
-    education: EDUCATION_ENTRIES[i],
-    internship: INTERNSHIP_ENTRIES[i],
-  }));
+
+  // Interleave so items from both sides alternate visually
+  for (let i = 0; i < max; i++) {
+    if (EDUCATION_ENTRIES[i]) {
+      items.push({ entry: EDUCATION_ENTRIES[i], kind: "education", side: "left" });
+    }
+    if (INTERNSHIP_ENTRIES[i]) {
+      items.push({ entry: INTERNSHIP_ENTRIES[i], kind: "internship", side: "right" });
+    }
+  }
+  return items;
 }
 
-const ROWS = buildRows();
+const FLAT_ITEMS = buildFlatItems();
 
-// Mobile: flatten row-by-row so paired items stay visually close
-const MOBILE_ITEMS = ROWS.flatMap((row) => {
-  const items: Array<{ entry: TimelineEntry; kind: "education" | "internship" }> = [];
-  if (row.education) items.push({ entry: row.education, kind: "education" });
-  if (row.internship) items.push({ entry: row.internship, kind: "internship" });
-  return items;
-});
-
-// Dot color helpers
-const dotColor = (kind: "education" | "internship") =>
+// ─── dot helpers ──────────────────────────────────────────────────────────
+const dotClass = (kind: "education" | "internship") =>
   kind === "education"
     ? "bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.55)]"
     : "bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.55)]";
 
-const ringColor = (kind: "education" | "internship") =>
+const ringClass = (kind: "education" | "internship") =>
   kind === "education" ? "border-blue-500/30" : "border-emerald-500/30";
 
+// ─── component ────────────────────────────────────────────────────────────
 export default function AcademicTimeline() {
   return (
     <>
-      {/* ═══════════════════════════════════════════════════════
-          DESKTOP — true two-column, center line (md+)
-      ═══════════════════════════════════════════════════════ */}
-      <div className="relative hidden md:block">
-        {/*
-          Center vertical line.
-          grid-cols-[1fr_48px_1fr] ⟹ center of the 48px column = 50% of container.
-          absolute left-1/2 -translate-x-1/2 lands on exactly the same axis.
-        */}
+      {/* ═══════════════════════════════════════════════
+          DESKTOP (md+) — two-column, real center line
+          Fix: max-md:hidden avoids the hidden/md:block
+          Tailwind v4 cascade problem entirely.
+      ═══════════════════════════════════════════════ */}
+      <div className="relative max-md:hidden">
+
+        {/* ── Real vertical center line ─────────────────
+            grid-cols-[1fr_48px_1fr] is symmetric:
+              center of the 48 px column = 50 % of container
+            The absolute line at left-1/2 lands on the same axis.
+        ─────────────────────────────────────────────── */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-border/60 to-transparent"
+          className="pointer-events-none absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 bg-gradient-to-b from-transparent via-border/60 to-transparent"
         />
 
         <motion.div
@@ -66,81 +72,67 @@ export default function AcademicTimeline() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="flex flex-col gap-12"
+          className="flex flex-col"
         >
-          {/* Column headers */}
-          <div className="grid grid-cols-[1fr_48px_1fr] items-center">
-            <div className="flex items-center justify-end gap-2 pr-6">
+          {/* ── Column labels ──────────────────────────── */}
+          <div className="grid grid-cols-[1fr_48px_1fr] mb-10">
+            <div className="flex items-center justify-end gap-2 pr-8">
               <span className="text-sm font-semibold text-blue-400">Education</span>
               <GraduationCap className="size-4 text-blue-400" aria-hidden="true" />
             </div>
-            {/* dot column — intentionally empty header */}
             <div />
-            <div className="flex items-center gap-2 pl-6">
+            <div className="flex items-center gap-2 pl-8">
               <Briefcase className="size-4 text-emerald-400" aria-hidden="true" />
               <span className="text-sm font-semibold text-emerald-400">Professional</span>
             </div>
           </div>
 
-          {/* Timeline rows */}
-          {ROWS.map((row, rowIndex) => {
-            const hasBoth = Boolean(row.education && row.internship);
-            const kind = row.education ? "education" : "internship";
+          {/* ── Individual rows — each entry on its own side ── */}
+          {FLAT_ITEMS.map(({ entry, kind, side }) => {
+            const isLeft = side === "left";
 
             return (
               <motion.div
-                key={rowIndex}
+                key={`${kind}-${entry.id}`}
                 variants={JOURNEY_ANIMATION.item}
-                className="grid grid-cols-[1fr_48px_1fr] items-start"
+                className="grid grid-cols-[1fr_48px_1fr] items-start mb-10 last:mb-0"
               >
-                {/* LEFT — education card */}
-                <div className="flex justify-end pr-6">
-                  {row.education ? (
-                    <TimelineCard
-                      entry={row.education}
-                      side="left"
-                      kind="education"
-                    />
+                {/* LEFT column */}
+                <div className="flex justify-end pr-8">
+                  {isLeft ? (
+                    <TimelineCard entry={entry} side="left" kind={kind} />
                   ) : (
+                    // empty spacer — keeps the center line visible
                     <div className="w-full" />
                   )}
                 </div>
 
-                {/* CENTER — dot, perfectly centered on the line */}
-                <div className="flex flex-col items-center pt-5">
+                {/* CENTER — dot on the line */}
+                <div className="flex flex-col items-center pt-[18px]">
                   <div
                     className={cn(
-                      "relative z-10 flex size-10 items-center justify-center rounded-full border bg-background shadow-sm",
-                      hasBoth
-                        ? "border-border"
-                        : ringColor(kind)
+                      "relative z-10 flex size-10 items-center justify-center",
+                      "rounded-full border bg-background shadow-sm",
+                      ringClass(kind)
                     )}
                   >
-                    <div
-                      className={cn(
-                        "size-3 rounded-full",
-                        hasBoth
-                          ? "bg-gradient-to-br from-blue-500 to-emerald-500"
-                          : dotColor(kind)
-                      )}
-                    />
-                    {(row.education?.current || row.internship?.current) && (
+                    <div className={cn("size-3 rounded-full", dotClass(kind))} />
+                    {entry.current && (
                       <span
                         aria-hidden="true"
-                        className="absolute inset-0 animate-ping rounded-full bg-blue-400/25"
+                        className={cn(
+                          "absolute inset-0 animate-ping rounded-full opacity-30",
+                          kind === "education" ? "bg-blue-400" : "bg-emerald-400"
+                        )}
                       />
                     )}
                   </div>
                 </div>
 
-                {/* RIGHT — internship card */}
-                <div className="pl-6">
-                  {row.internship ? (
-                    <TimelineCard
-                      entry={row.internship}
-                      side="right"
-                      kind="internship"
-                    />
+                {/* RIGHT column */}
+                <div className="pl-8">
+                  {!isLeft ? (
+                    <TimelineCard entry={entry} side="right" kind={kind} />
                   ) : (
                     <div className="w-full" />
                   )}
@@ -151,14 +143,14 @@ export default function AcademicTimeline() {
         </motion.div>
       </div>
 
-      {/* ═══════════════════════════════════════════════════════
-          MOBILE — single vertical timeline, chronological order
-      ═══════════════════════════════════════════════════════ */}
+      {/* ═══════════════════════════════════════════════
+          MOBILE (<md) — single vertical timeline
+      ═══════════════════════════════════════════════ */}
       <div className="relative md:hidden">
-        {/* Left rail line */}
+        {/* Left rail */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-[19px] top-0 h-full w-px bg-gradient-to-b from-transparent via-border/60 to-transparent"
+          className="pointer-events-none absolute left-[19px] top-0 h-full w-0.5 bg-gradient-to-b from-transparent via-border/60 to-transparent"
         />
 
         <motion.ul
@@ -170,7 +162,7 @@ export default function AcademicTimeline() {
           viewport={{ once: true, margin: "-40px" }}
           className="relative flex flex-col gap-6"
         >
-          {MOBILE_ITEMS.map(({ entry, kind }) => (
+          {FLAT_ITEMS.map(({ entry, kind }) => (
             <motion.li
               key={`mobile-${kind}-${entry.id}`}
               role="listitem"
@@ -180,11 +172,12 @@ export default function AcademicTimeline() {
               {/* Dot */}
               <div
                 className={cn(
-                  "relative z-10 mt-1 flex size-[38px] shrink-0 items-center justify-center rounded-full border bg-background shadow-sm",
-                  ringColor(kind)
+                  "relative z-10 mt-1 flex size-[38px] shrink-0",
+                  "items-center justify-center rounded-full border bg-background shadow-sm",
+                  ringClass(kind)
                 )}
               >
-                <div className={cn("size-3 rounded-full", dotColor(kind))} />
+                <div className={cn("size-3 rounded-full", dotClass(kind))} />
                 {entry.current && (
                   <span
                     aria-hidden="true"

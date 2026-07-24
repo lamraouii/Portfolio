@@ -1,0 +1,25 @@
+Problem Description
+
+Component: AcademicTimeline.tsx (in src/features/journey/components/), rendered inside Journey.tsx on the portfolio homepage.
+
+Symptom: On desktop viewports (≥768px), the academic timeline section renders empty — no cards, no content visible — even though only the section title/labels ("Timeline of Growth", "Academic Journey", "Education", "Professional") are visible. On mobile viewports (<768px), the same data renders correctly as a stacked card list.
+
+Root cause identified: The desktop layout wrapper has display: none applied and it is not being overridden, even though the viewport is confirmed to be ≥768px (tested at 1440px width). Specifically:
+
+tsx
+<div className="relative hidden md:block">
+
+DevTools shows this element's computed display as none. Manually unchecking the .hidden rule in DevTools' Styles panel makes the content appear correctly, confirming .hidden { display: none } is winning the CSS cascade over .md\:block { display: block }, when it should not at this viewport width.
+
+What's been ruled out:
+
+Not a data issue — TimelineEntry data (period, title, org, description, tags) is correct and confirmed present in the DOM.
+Not a TimelineCard component issue — the same component renders correctly in the mobile branch.
+Not a Framer Motion / animation issue — computed opacity is 1, not stuck at 0.
+Not a missing-class-generation issue — I rebuilt the actual Tailwind v4 CSS output from the repo's source (npx @tailwindcss/cli) and confirmed both .grid-cols-\[1fr_48px_1fr\] and .md\:block { display: block } ARE correctly generated, and .md\:block is correctly ordered after .hidden in the stylesheet (meaning it should win the cascade at ≥768px).
+Not a tailwind.config content-glob issue — this project uses Tailwind v4 with CSS-based config (@import "tailwindcss" in globals.css), no tailwind.config.ts file exists, and no custom @source overrides are present.
+No other CSS file, inline <style>, or tailwind-merge/cn() conflict overrides .hidden or .md:block anywhere in the codebase.
+
+Conclusion / suspected cause: Since the source code and generated CSS are both verified correct, the discrepancy is most likely a stale build/cache — either a stale .next cache, a stale browser cache, or the browser testing against a different branch/commit than the one being edited (feat_journey).
+
+Requested fix: Please verify this is not a caching issue first (clear .next, hard-reload browser, confirm branch/commit), and if the bug persists after a clean rebuild, investigate further with fresh DevTools inspection of the .hidden vs .md:block cascade on the actual running dev server.
